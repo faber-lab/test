@@ -1,6 +1,6 @@
 from anthropic import Anthropic
 
-client = Anthropic(api_key="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")
+client = Anthropic(api_key="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")
 
 response = client.messages.create(
     model="claude-2.1",
