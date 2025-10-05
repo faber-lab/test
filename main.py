@@ -15,7 +15,7 @@ client = gspread.authorize(creds)
 prompts = "自己紹介をして下さい"
 
 # Claude API設定
-claude = anthropic.Anthropic(api_key="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")
+claude = Anthropic(api_key="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")
 
 # Claudeでタスク実行
 for i, prompt in enumerate(prompts):
