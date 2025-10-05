@@ -4,14 +4,14 @@ import anthropic
 
 # Google Sheets認証
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-creds = ServiceAccountCredentials.from_json_keyfile_name("your_google_credentials.json", scope)
+creds = ServiceAccountCredentials.from_json_keyfile_name("autoyoutube-474207-5aba7833ff63.json", scope)
 client = gspread.authorize(creds)
 
 # スプレッドシートを開く
-sheet = client.open("ClaudeTasks").sheet1  # シート名に応じて変更
+sheet = client.open("AutoYoutube").sheet1  # シート名に応じて変更
 
 # プロンプトを読み込む（例：A列にプロンプトがある）
-prompts = sheet.col_values(1)[1:]  # 1行目はヘッダーと仮定
+prompts = sheet.cell(2, 3).value  # C2を仮定
 
 # Claude API設定
 claude = anthropic.Anthropic(api_key="YOUR_ANTHROPIC_API_KEY")
