@@ -9,10 +9,11 @@ creds = ServiceAccountCredentials.from_json_keyfile_name("autoyoutube-474207-5ab
 client = gspread.authorize(creds)
 
 # スプレッドシートを開く
-sheet = client.open("AutoYoutube").sheet1  # シート名に応じて変更
+#sheet = client.open("AutoYoutube").sheet1  # シート名に応じて変更
 
 # プロンプトを読み込む（例：A列にプロンプトがある）
-prompts = sheet.cell(2, 3).value  # C2を仮定
+#prompts = sheet.cell(2, 3).value  # C2を仮定
+prompts = "自己紹介をして下さい"
 
 # Claude API設定
 claude = anthropic.Anthropic(api_key="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")
