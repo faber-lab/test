@@ -1,7 +1,7 @@
-#pip install gspread oauth2client anthropic
-#import gspread
-#from oauth2client.service_account import ServiceAccountCredentials
-#import anthropic
+pip install gspread oauth2client anthropic
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
+import anthropic
 
 # Google Sheets認証
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
