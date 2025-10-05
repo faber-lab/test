@@ -4,7 +4,7 @@ import os
 from dotenv import load_dotenv
 from anthropic import Anthropic
 
-load_dotenv()  # .envファイルを読み込む
+load_dotenv("/etc/secrets/api.env")  # .envファイルを読み込む
 
 client = Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 
