@@ -1,7 +1,10 @@
 anthropic
+python-dotenv
+
 gspread==5.12.0
 oauth2client==4.1.3
 
 requests==2.31.0
 gunicorn==21.2.0
+
 
