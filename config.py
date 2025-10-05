@@ -1,0 +1,1 @@
+API_KEY = "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"
