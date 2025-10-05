@@ -1,11 +1,11 @@
-#import gspread
+import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from anthropic import Anthropic
 
 # Google Sheets認証
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
 creds = ServiceAccountCredentials.from_json_keyfile_name("autoyoutube-474207-5aba7833ff63.json", scope)
-#client = gspread.authorize(creds)
+client = gspread.authorize(creds)
 
 # スプレッドシートを開く
 sheet = client.open("AutoYoutube").sheet1  # シート名に応じて変更
