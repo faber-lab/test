@@ -8,7 +8,7 @@ creds = ServiceAccountCredentials.from_json_keyfile_name("autoyoutube-474207-5ab
 client = gspread.authorize(creds)
 
 # スプレッドシートを開く
-#sheet = client.open("AutoYoutube").sheet1  # シート名に応じて変更
+sheet = client.open("AutoYoutube").sheet1  # シート名に応じて変更
 
 # プロンプトを読み込む（例：A列にプロンプトがある）
 #prompts = sheet.cell(2, 3).value  # C2を仮定
