@@ -1,7 +1,12 @@
 from anthropic import Anthropic
-from config import API_KEY
 
-client = Anthropic(api_key="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")
+import os
+from dotenv import load_dotenv
+from anthropic import Anthropic
+
+load_dotenv()  # .envファイルを読み込む
+
+client = Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 
 response = client.messages.create(
     model="claude-sonnet-4-5-20250929",
