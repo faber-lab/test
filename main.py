@@ -1,14 +1,14 @@
-import gspread
-from oauth2client.service_account import ServiceAccountCredentials
+#import gspread
+#from oauth2client.service_account import ServiceAccountCredentials
 from anthropic import Anthropic
 
 # Google Sheets認証
-scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-creds = ServiceAccountCredentials.from_json_keyfile_name("autoyoutube-474207-5aba7833ff63.json", scope)
-client = gspread.authorize(creds)
+#scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+#creds = ServiceAccountCredentials.from_json_keyfile_name("autoyoutube-474207-5aba7833ff63.json", scope)
+#client = gspread.authorize(creds)
 
 # スプレッドシートを開く
-sheet = client.open("AutoYoutube").sheet1  # シート名に応じて変更
+#sheet = client.open("AutoYoutube").sheet1  # シート名に応じて変更
 
 # プロンプトを読み込む（例：A列にプロンプトがある）
 #prompts = sheet.cell(2, 3).value  # C2を仮定
@@ -28,4 +28,6 @@ for i, prompt in enumerate(prompts):
     result = response.content
 
     # 結果をB列に書き込み
-    sheet.update_cell(i + 2, 2, result)  # 2行目から開始（ヘッダー除く）
+    #sheet.update_cell(i + 2, 2, result)  # 2行目から開始（ヘッダー除く）
+
+print(result)
