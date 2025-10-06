@@ -18,7 +18,7 @@ client_ggl = gspread.authorize(creds)
 
 # スプレッドシートを開く
 sheet = client_ggl.open("AutoYoutube").sheet1  # シート名に応じて変更
-prompts = sheet.cell(2, 2).value  # B2を仮定
+prompt = sheet.cell(2, 2).value  # B2を仮定
 
 response = client_cla.messages.create(
     model="claude-sonnet-4-5-20250929",
