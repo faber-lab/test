@@ -28,4 +28,8 @@ response = client_cla.messages.create(
     ]
 )
 
-print(response.content[0].text)
+#print(response.content[0].text)
+
+# 応答内容をスプレッドシートの B3 に書き込む
+sheet.update_cell(3, 2, response.content[0].text)
+
