@@ -22,7 +22,7 @@ class GoogleDriveUploader:
         Google Driveアップローダーの初期化
         
         Args:
-            credentials_json_path: サービスアカウントのJSONファイルパス
+            credentials_json_path: "/etc/secrets/autoyoutube-474207-e529fad13ffc.json"
                                   Noneの場合は環境変数から読み込み
         """
         SCOPES = ['https://www.googleapis.com/auth/drive.file']
