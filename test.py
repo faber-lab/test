@@ -8,6 +8,11 @@ from dotenv import load_dotenv
 
 load_dotenv("/etc/secrets/api.env")  # .envファイルを読み込む
 
+from google_drive_uploader import GoogleDriveUploader
+
+# 初期化
+uploader = GoogleDriveUploader()
+
 # Set up the wave file to save the output:
 def wave_file(filename, pcm, channels=1, rate=24000, sample_width=2):
     with wave.open(filename, 'wb') as wf:
@@ -41,7 +46,9 @@ response = client.models.generate_content(
 data = response.candidates[0].content.parts[0].inline_data.data
 
 file_name = 'out.wav'
-wave_file(file_name, data)  # Saves the file to current directory
+# wave_file(file_name, data)  # Saves the file to current directory
 
+# 特定のフォルダにアップロード
+file_id = uploader.upload_file('out.wav', drive_folder_id='0AGktFDT2dCBRUk9PVA')
 
 
