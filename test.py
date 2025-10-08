@@ -44,32 +44,4 @@ file_name = 'out.wav'
 wave_file(file_name, data)  # Saves the file to current directory
 
 
-from google.oauth2 import service_account
-from googleapiclient.discovery import build
-from googleapiclient.http import MediaFileUpload
-
-# 認証情報の読み込み
-SCOPES = ['https://www.googleapis.com/auth/drive.file']
-SERVICE_ACCOUNT_FILE = '/etc/secrets/autoyoutube-474207-e529fad13ffc.json'  # JSONキーのパス
-
-credentials = service_account.Credentials.from_service_account_file(
-    SERVICE_ACCOUNT_FILE, scopes=SCOPES
-)
-
-drive_service = build('drive', 'v3', credentials=credentials)
-
-# Google Driveにアップロード
-file_metadata = {
-    'name': file_name,
-    # 'parents': ['your_folder_id']  # フォルダ指定する場合はここにIDを入れる
-}
-media = MediaFileUpload(file_name, mimetype='audio/wav')
-
-uploaded = drive_service.files().create(
-    body=file_metadata,
-    media_body=media,
-    fields='id'
-).execute()
-
-print(f"Uploaded to Google Drive with file ID: {uploaded.get('id')}")
 
