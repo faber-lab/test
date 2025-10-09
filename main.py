@@ -12,7 +12,7 @@ client_cla = Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 
 # Google Sheets認証
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-creds = ServiceAccountCredentials.from_json_keyfile_name("/etc/secrets/autoyoutube-474207-e529fad13ffc.json", scope)
+creds = ServiceAccountCredentials.from_json_keyfile_name("/etc/secrets/autoyoutube-474207-2bc16b07ab8f.json", scope)
 
 client_ggl = gspread.authorize(creds)
 
