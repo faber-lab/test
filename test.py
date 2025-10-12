@@ -1,38 +1,36 @@
-from google.oauth2 import service_account
-from googleapiclient.discovery import build
+import os
 import io
+import json
+from google.oauth2.credentials import Credentials
+from googleapiclient.discovery import build
 from googleapiclient.http import MediaIoBaseUpload
 
-# --- 設定 ---
-SERVICE_ACCOUNT_FILE = "/etc/secrets/autoyoutube-474207-2bc16b07ab8f.json"  # Render上に置く or 環境変数で読み込む
-SCOPES = ["https://www.googleapis.com/auth/drive.file"]
-FOLDER_ID = "1BT8_ri8ukTlyahgDpWVHY6QDXH6s7JBy"  # アップロード先のフォルダID
+# --- 環境変数から認証情報を読み込む ---
+client_secret_info = json.loads(os.environ["GOOGLE_CLIENT_SECRET_JSON"])
+token_info = json.loads(os.environ["GOOGLE_TOKEN_JSON"])
+folder_id = os.environ["GOOGLE_DRIVE_FOLDER_ID"]
 
 # --- 認証 ---
-creds = service_account.Credentials.from_service_account_file(
-    SERVICE_ACCOUNT_FILE, scopes=SCOPES
-)
+creds = Credentials.from_authorized_user_info(token_info)
 
 # --- Drive API 初期化 ---
 service = build("drive", "v3", credentials=creds)
 
-# --- アップロードするファイル情報 ---
-file_name = "example.txt"
-file_content = "Hello from Render!"
-
+# --- アップロードファイル設定 ---
+file_name = "render_upload_test.txt"
+file_content = "Hello from Render via OAuth!"
 file_metadata = {
     "name": file_name,
-    "parents": [FOLDER_ID]  # フォルダIDを指定
+    "parents": [folder_id],
 }
 
-media = MediaIoBaseUpload(io.BytesIO(file_content.encode("utf-8")),
-                          mimetype="text/plain")
+media = MediaIoBaseUpload(io.BytesIO(file_content.encode("utf-8")), mimetype="text/plain")
 
-# --- アップロード実行 ---
+# --- ファイルアップロード ---
 uploaded_file = service.files().create(
     body=file_metadata,
     media_body=media,
-    fields="id"
+    fields="id, name"
 ).execute()
 
-print(f"✅ File uploaded successfully: {uploaded_file.get('id')}")
+print(f"✅ Uploaded: {uploaded_file['name']} (ID: {uploaded_file['id']})")
