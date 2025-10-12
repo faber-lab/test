@@ -25,7 +25,7 @@ response = genai.GenerativeModel("gemini-2.5-flash-preview-tts").generate_conten
         "speech_config": {
             "voice_config": {
                 "prebuilt_voice_config": {
-                    "voice_name": "ja-JP-Wavenet-A"
+                    "voice_name": "kore"
                 }
             }
         }
