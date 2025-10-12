@@ -11,7 +11,7 @@ FOLDER_ID = "1BT8_ri8ukTlyahgDpWVHY6QDXH6s7JBy"  # アップロード先のフ�
 # --- 認証 ---
 creds = service_account.Credentials.from_service_account_file(
     SERVICE_ACCOUNT_FILE, scopes=SCOPES
-#)
+)
 
 # --- Drive API 初期化 ---
 service = build("drive", "v3", credentials=creds)
