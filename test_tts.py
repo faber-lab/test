@@ -1,5 +1,7 @@
 import os
 import google.generativeai as genai
+from google.genai import types
+
 from dotenv import load_dotenv
 
 from google_auth_oauthlib.flow import InstalledAppFlow
