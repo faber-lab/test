@@ -36,7 +36,7 @@ response = genai.GenerativeModel("gemini-2.5-flash-preview-tts").generate_conten
 # 音声ファイル保存
 file_name = "output.wav"
 with open("output.wav", "wb") as audio_file:
-    audio_file.write(response.candidates[0].content.parts[0].audio)
+    audio_file.write(response.candidates[0].content.parts[0].inline_data.data)
 
 # Google Drive API認証
 SCOPES = ['https://www.googleapis.com/auth/drive.file']
