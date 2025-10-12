@@ -15,10 +15,10 @@ load_dotenv("/etc/secrets/api.env")
 genai.configure(api_key=os.getenv("Gemini_API_KEY"))
 
 # モデル初期化
-model = genai.GenerativeModel('gemini-2.5-pro-preview-05-06')
+model = genai.GenerativeModel('gemini-2.5-flash-preview-tts')
 
 # 音声生成
-response = genai.GenerativeModel("gemini-2.5-pro-preview-05-06").generate_content(
+response = genai.GenerativeModel("gemini-2.5-flash-preview-tts").generate_content(
     "こんにちは。うさぎでもわかるGemini 2.5 Pro TTSの解説です。",
     generation_config={
         "response_modalities": ["AUDIO"],
