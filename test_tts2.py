@@ -1,2 +1,3 @@
-import google.generativeai as genai
-print(dir(genai.types))  # 利用可能な属性を確認
+model_list = genai.list_models()
+for m in model_list:
+    print(m.name, m.supported_generation_methods)
