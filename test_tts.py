@@ -20,16 +20,16 @@ model = genai.GenerativeModel('gemini-2.5-pro-preview-05-06')
 # 音声生成
 response = genai.GenerativeModel("gemini-2.5-pro-preview-05-06").generate_content(
     "こんにちは。うさぎでもわかるGemini 2.5 Pro TTSの解説です。",
-    generation_config=types.GenerationConfig(
-        response_modalities=["AUDIO"],
-        speech_config=types.SpeechConfig(
-            voice_config=types.VoiceConfig(
-                prebuilt_voice_config=types.PrebuiltVoiceConfig(
-                    voice_name="ja-JP-Wavenet-A"
-                )
-            )
-        )
-    )
+    generation_config={
+        "response_modalities": ["AUDIO"],
+        "speech_config": {
+            "voice_config": {
+                "prebuilt_voice_config": {
+                    "voice_name": "ja-JP-Wavenet-A"
+                }
+            }
+        }
+    }
 )
 
 
