@@ -11,7 +11,7 @@ SCOPES = ["https://www.googleapis.com/auth/drive.file"]
 
 flow = InstalledAppFlow.from_client_secrets_file(
     "client_secret_599500399129-nqah0dbjj0ikk8l2r17304gr1l2ombdm.apps.googleusercontent.com.json", SCOPES)
-creds = flow.run_local_server(port=0)
+creds = flow.run_console() 
 
 service = build("drive", "v3", credentials=creds)
 
