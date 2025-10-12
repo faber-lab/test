@@ -6,7 +6,7 @@ from googleapiclient.http import MediaIoBaseUpload
 # --- 設定 ---
 SERVICE_ACCOUNT_FILE = "/etc/secrets/autoyoutube-474207-e529fad13ffc.json"  # Render上に置く or 環境変数で読み込む
 SCOPES = ["https://www.googleapis.com/auth/drive.file"]
-FOLDER_ID = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"  # アップロード先のフォルダID
+FOLDER_ID = "1BT8_ri8ukTlyahgDpWVHY6QDXH6s7JBy"  # アップロード先のフォルダID
 
 # --- 認証 ---
 creds = service_account.Credentials.from_service_account_file(
