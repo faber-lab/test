@@ -1,6 +1,7 @@
 import os
 import json
 import base64
+import struct
 
 import google.generativeai as genai
 from google.genai import types
@@ -40,25 +41,45 @@ response = genai.GenerativeModel("gemini-2.5-flash-preview-tts").generate_conten
 # 音声ファイル保存
 file_name = "output.wav"
 
+def pcm_to_wav(pcm_data, sample_rate=24000, bits_per_sample=16, channels=1):
+    """PCM生データをWAVファイルに変換"""
+    byte_rate = sample_rate * channels * bits_per_sample // 8
+    block_align = channels * bits_per_sample // 8
+    data_size = len(pcm_data)
+    
+    header = struct.pack('<4sI4s4sIHHIIHH4sI',
+        b'RIFF', data_size + 36, b'WAVE',
+        b'fmt ', 16, 1, channels,
+        sample_rate, byte_rate, block_align, bits_per_sample,
+        b'data', data_size
+    )
+    
+    return header + pcm_data
 
-#with open("output.wav", "wb") as audio_file:
-#    audio_file.write(response.candidates[0].content.parts[0].inline_data.data)
-
-# ----------------------------------------
+# 音声データを取得
 part = response.candidates[0].content.parts[0]
-if hasattr(part, 'inline_data'):
-    print(f"MIME type: {part.inline_data.mime_type}")
+pcm_data = part.inline_data.data
+mime_type = part.inline_data.mime_type
 
-data = response.candidates[0].content.parts[0].inline_data.data
-if isinstance(data, str):
-    data = base64.b64decode(data)
+print(f"MIME type: {mime_type}")
+print(f"PCM data size: {len(pcm_data)} bytes")
 
+# WAVに変換
+wav_data = pcm_to_wav(pcm_data, sample_rate=24000, bits_per_sample=16, channels=1)
+
+# 保存
 with open("output.wav", "wb") as audio_file:
-    audio_file.write(data)
-    audio_file.flush()  # バッファをフラッシュ
-    os.fsync(audio_file.fileno())  # ディスクに強制書き込み
+    audio_file.write(wav_data)
 
-# ----------------------------------------
+# 検証
+with open("output.wav", "rb") as f:
+    header = f.read(12)
+    print(f"\n✓ WAV header: {header.hex()}")
+    print(f"✓ File size: {len(wav_data)} bytes")
+    print("✓ File should now be playable!")
+
+
+
 
 
 # Google Drive API認証
