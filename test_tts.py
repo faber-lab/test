@@ -45,7 +45,7 @@ SCOPES = ['https://www.googleapis.com/auth/drive.file']
 
 CLIENT_SECRET = json.loads(os.environ["GOOGLE_CLIENT_SECRET_JSON"])
 CLIENT_ID = json.loads(os.environ["GOOGLE_TOKEN_JSON"])
-FOLDER_ID = os.environ("GOOGLE_DRIVE_FOLDER_ID")
+FOLDER_ID = os.environ["GOOGLE_DRIVE_FOLDER_ID"]
 
 
 flow = InstalledAppFlow.from_client_config(
