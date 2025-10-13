@@ -45,6 +45,10 @@ file_name = "output.wav"
 #    audio_file.write(response.candidates[0].content.parts[0].inline_data.data)
 
 # ----------------------------------------
+part = response.candidates[0].content.parts[0]
+if hasattr(part, 'inline_data'):
+    print(f"MIME type: {part.inline_data.mime_type}")
+
 data = response.candidates[0].content.parts[0].inline_data.data
 if isinstance(data, str):
     data = base64.b64decode(data)
