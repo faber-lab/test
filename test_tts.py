@@ -60,13 +60,6 @@ flow = InstalledAppFlow.from_client_config(
     SCOPES
 )
 
-# creds = flow.run_local_server(port=0) ローカルはこの書き方
-
-creds = flow.run_local_server(
-    port=8080,
-    redirect_uri_trailing_slash=True
-)
-
 drive_service = build('drive', 'v3', credentials=creds)
 
 # Google Driveにアップロード
