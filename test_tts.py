@@ -60,6 +60,8 @@ flow = InstalledAppFlow.from_client_config(
     SCOPES
 )
 
+creds = Credentials.from_authorized_user_info(CLIENT_ID)
+
 drive_service = build('drive', 'v3', credentials=creds)
 
 # Google Driveにアップロード
