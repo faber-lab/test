@@ -22,9 +22,17 @@ genai.configure(api_key=os.getenv("Gemini_API_KEY"))
 # モデル初期化
 model = genai.GenerativeModel('gemini-2.5-flash-preview-tts')
 
+# 複数話者でのテキスト
+multi_speaker_text = """
+田中さん: おはようございます。今日の会議の件ですが。
+佐藤さん: はい、準備はできています。資料も揃えました。
+田中さん: ありがとうございます。それでは10時から始めましょう。
+"""
+
 # 音声生成
 response = genai.GenerativeModel("gemini-2.5-flash-preview-tts").generate_content(
-    "こんにちは。うさぎでもわかるGemini 2.5 Pro TTSの解説です。本日は宜しくお願いします。それではやっていきましょう、まずは例題から",
+    # "こんにちは。うさぎでもわかるGemini 2.5 Pro TTSの解説です。本日は宜しくお願いします。それではやっていきましょう、まずは例題から",
+     multi_speaker_text,
     generation_config={
         "response_modalities": ["AUDIO"],
         "speech_config": {
