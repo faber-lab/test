@@ -9,6 +9,7 @@ from dotenv import load_dotenv
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
+from google.oauth2.credentials import Credentials
 
 # 環境変数の読み込み
 load_dotenv("/etc/secrets/api.env")
