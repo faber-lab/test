@@ -51,6 +51,9 @@ if isinstance(data, str):
 
 with open("output.wav", "wb") as audio_file:
     audio_file.write(data)
+    audio_file.flush()  # バッファをフラッシュ
+    os.fsync(audio_file.fileno())  # ディスクに強制書き込み
+
 # ----------------------------------------
 
 
