@@ -44,14 +44,14 @@ file_name = "output.wav"
 #with open("output.wav", "wb") as audio_file:
 #    audio_file.write(response.candidates[0].content.parts[0].inline_data.data)
 
-----------------------------------------
+# ----------------------------------------
 data = response.candidates[0].content.parts[0].inline_data.data
 if isinstance(data, str):
     data = base64.b64decode(data)
 
 with open("output.wav", "wb") as audio_file:
     audio_file.write(data)
-----------------------------------------
+# ----------------------------------------
 
 
 # Google Drive API認証
