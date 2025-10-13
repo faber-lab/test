@@ -23,7 +23,7 @@ model = genai.GenerativeModel('gemini-2.5-flash-preview-tts')
 
 # 音声生成
 response = genai.GenerativeModel("gemini-2.5-flash-preview-tts").generate_content(
-    "こんにちは。うさぎでもわかるGemini 2.5 Pro TTSの解説です。",
+    "こんにちは。うさぎでもわかるGemini 2.5 Pro TTSの解説です。本日は宜しくお願いします。それではやっていきましょう、まずは例題から",
     generation_config={
         "response_modalities": ["AUDIO"],
         "speech_config": {
